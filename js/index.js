@@ -46,8 +46,7 @@ var app = {
         
         console.log('Received Event: ' + id);
         
-        // AppAvailability Demo Code
-        
+        // AppAvailability Demo Code (Alert)
         var scheme;
         
         // Don't forget to add the org.apache.cordova.device plugin!
@@ -61,16 +60,30 @@ var app = {
         appAvailability.check(
             scheme, // URI Scheme
             function() {  // Success callback
-                document.getElementById('result').innerHTML = scheme + ' is available :)';
                 alert(scheme + ' is available :)');
             },
             function() {  // Error callback
-                document.getElementById('result').innerHTML = scheme + ' is not available :(';
                 alert(scheme + ' is not available :(');
             }
         );
         
-        // AppAvailability Demo Code
+        // AppAvailability Demo Code (Button)
+        var button = document.getElementById('openTwitter');
+        
+        // Event handler
+        button.addEventListener('click', function() {
+            appAvailability.check(
+                scheme, // URI Scheme
+                function() {  // Success callback
+                    // Open profile in Twitter app
+                    window.open('twitter://user?screen_name=ohh2ahh', '_system');
+                },
+                function() {  // Error callback
+                    // Open profile in InAppBrowser
+                    window.open('https://twitter.com/ohh2ahh', '_blank');
+                }
+            );
+        }, false);
         
     }
 };
