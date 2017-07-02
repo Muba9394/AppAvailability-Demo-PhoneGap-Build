@@ -56,7 +56,7 @@ var app = {
         else if(device.platform === 'Android') {
             scheme = 'com.twitter.android';
         }
-        
+        //Cahnges Made here
         appAvailability.check(
             scheme, // URI Scheme
             function() {  // Success callback
